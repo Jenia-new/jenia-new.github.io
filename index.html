@@ -1,0 +1,818 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;html lang="ru"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Crypto Tracker Mobile&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="apple-touch-icon" href="https://via.placeholder.com/180x180.png?text=CT"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>* {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-tap-highlight-color: transparent;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #0a0a0a;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow-x: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>touch-action: pan-y;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-font-smoothing: antialiased;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.mobile-header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: env(safe-area-inset-top) 15px 15px 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(10px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-backdrop-filter: blur(10px); /* Для Safari */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.header-title {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(45deg, #00d4ff, #0099ff);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-background-clip: text;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-text-fill-color: transparent;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.mobile-tabs {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 255, 255, 0.05);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.mobile-tab {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex: 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 2;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: color 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.tab-indicator {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bottom: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: calc(33.33% - 4px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(45deg, #00d4ff, #0099ff);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Более плавная анимация */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.tab-indicator.tab-0 { /* Изменено на tab-0 для соответствия индексам */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateX(0);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.tab-indicator.tab-1 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateX(calc(100% + 4px));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.tab-indicator.tab-2 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateX(calc(200% + 8px));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.mobile-tab.active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.mobile-content {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-top: calc(env(safe-area-inset-top) + 100px + 15px); /* Добавлен отступ для контента */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-bottom: 80px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.swipe-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Более плавная анимация свайпа */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 300%;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.tab-content {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 33.33%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0 15px; /* Убрал отступы по бокам */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.crypto-card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(255, 255, 255, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.crypto-card:active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: scale(0.98);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.crypto-card-header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.crypto-symbol {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.crypto-price {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 28px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.price-change {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: inline-flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 6px 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.positive {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(0, 255, 136, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #00ff88;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.negative {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 51, 51, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #ff3333;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.signal-badge {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 6px 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.long-signal {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(0, 255, 136, 0.2);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #00ff88;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.short-signal {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 51, 51, 0.2);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #ff3333;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.meme-badge {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(45deg, #ff6b6b, #ff9f40);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 3px 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 6px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 11px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.new-listing-card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid rgba(0, 212, 255, 0.3);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer; /* Добавлено */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease; /* Добавлено */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.new-listing-card:active { /* Добавлено */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: scale(0.98);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.new-badge {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: -8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(45deg, #00d4ff, #0099ff);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 4px 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0 0 8px 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.exchange-tags {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 6px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-wrap: wrap;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.exchange-tag {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(0, 212, 255, 0.2);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #00d4ff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 4px 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 6px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.bottom-nav {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bottom: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(26, 26, 46, 0.95);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(10px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-backdrop-filter: blur(10px); /* Для Safari */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px 15px env(safe-area-inset-bottom) 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-around;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-top: 1px solid rgba(255, 255, 255, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1000;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-item {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 8px 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-item:active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: scale(0.95);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-item.active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(0, 212, 255, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-icon {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-label {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 11px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.refresh-fab {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bottom: calc(env(safe-area-inset-bottom) + 80px); /* Скорректировано положение */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 56px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 56px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(45deg, #00d4ff, #0099ff);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 999;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.refresh-fab:active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: scale(0.9);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.refresh-fab.spinning {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: spin 1s linear infinite; /* Изменено на linear infinite */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes spin {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { transform: rotate(360deg); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.signal-popup {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: calc(env(safe-area-inset-top) + 110px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #00d4ff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-20px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 2000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 80vh; /* Ограничение по высоте */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow-y: auto; /* Прокрутка при необходимости */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.signal-popup.show {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>opacity: 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.signal-header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.signal-details {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.signal-row {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 8px 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid rgba(255, 255, 255, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.signal-row:last-child { /* Убрал нижнюю границу у последнего элемента */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.signal-label {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #999;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.signal-value {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.close-popup {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 255, 255, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 18px; /* Увеличил размер крестика */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.loading-skeleton {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-size: 200% 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: loading 1.5s infinite;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes loading {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% { background-position: 200% 0; }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { background-position: -200% 0; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.error-message {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #ff3333;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (max-width: 380px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.crypto-price {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>font-size: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.mobile-tab {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>font-size: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>padding: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Улучшенная поддержка жестов */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.swipeable {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>touch-action: pan-y pinch-zoom;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Оптимизация для PWA */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (display-mode: standalone) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.mobile-header {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>padding-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mobile-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1 class="header-title"&gt;💎 Crypto Tracker Pro&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="mobile-tabs"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="tab-indicator tab-0" id="tabIndicator"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="mobile-tab active" data-tab="0"&gt;Основные&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="mobile-tab" data-tab="1"&gt;Мемы&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="mobile-tab" data-tab="2"&gt;Новые&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mobile-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="swipe-container swipeable" id="swipeContainer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="tab-content" id="mainCoins"&gt;&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="tab-content" id="memeCoins"&gt;&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="tab-content" id="newListings"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="bottom-nav"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="nav-item active" onclick="switchTab(0)"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="nav-icon"&gt;📊&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="nav-label"&gt;Рынок&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="nav-item" onclick="showSignals()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="nav-icon"&gt;🎯&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="nav-label"&gt;Сигналы&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="nav-item" onclick="showNews()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="nav-icon"&gt;📰&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="nav-label"&gt;Новости&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="nav-item" onclick="showAlerts()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="nav-icon"&gt;🔔&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="nav-label"&gt;Алерты&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="refresh-fab" id="refreshBtn" onclick="refreshData()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>🔄</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="signal-popup" id="signalPopup"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="close-popup" onclick="closeSignal()"&gt;✕&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="signalContent"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Захардкоженные данные для демонстрации "Новых листингов" и базовых примеров</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const initialNewListings = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ symbol: 'ZETA', name: 'ZetaChain', price: 2.34, date: 'Сегодня', exchanges: ['Binance', 'OKX'], prediction: 'LONG', target: 5.00, id: 'zeta-chain' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ symbol: 'BLUR', name: 'Blur', price: 0.567, date: 'Вчера', exchanges: ['Binance', 'Coinbase'], prediction: 'SHORT', target: 0.40, id: 'blur' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ symbol: 'ARKM', name: 'Arkham', price: 3.21, date: '2 дня назад', exchanges: ['Binance', 'Huobi'], prediction: 'LONG', target: 6.00, id: 'arkham' }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>let currentTab = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let touchStartX = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let touchEndX = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let cryptoData = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>main: [],</p>
+<p class="p1"><span class="Apple-converted-space">            </span>meme: [],</p>
+<p class="p1"><span class="Apple-converted-space">            </span>new: initialNewListings // Новые листинги пока остаются захардкоженными</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const COINGECKO_API_BASE = 'https://api.coingecko.com/api/v3';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const COINGECKO_API_COINS_LIST = `${COINGECKO_API_BASE}/coins/list`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const COINGECKO_API_MARKETS = `${COINGECKO_API_BASE}/coins/markets`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const MAIN_COINS_IDS = ['bitcoin', 'ethereum', 'binancecoin', 'solana', 'ripple', 'cardano'];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const MEME_COINS_IDS = ['dogecoin', 'shiba-inu', 'pepe', 'floki', 'bonk', 'dogwifhat']; // IDs из CoinGecko</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Вспомогательные функции ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function formatPrice(price) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (price &gt;= 1000) return price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (price &gt;= 1) return price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (price &gt;= 0.01) return price.toLocaleString('en-US', { minimumFractionDigits: 4, maximumFractionDigits: 6 });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return price.toLocaleString('en-US', { minimumFractionDigits: 6, maximumFractionDigits: 8 });</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function getSignal(change24h, change1h) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Условия для сигналов могут быть настроены</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (change1h &gt; 2 &amp;&amp; change24h &gt; 5) return 'long';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (change1h &lt; -2 &amp;&amp; change24h &lt; -5) return 'short';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return null;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function showLoadingSkeletons(tabId) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const container = document.getElementById(tabId);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>container.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="loading-skeleton"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="loading-skeleton"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="loading-skeleton"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function showError(tabId, message = 'Не удалось загрузить данные. Попробуйте еще раз.') {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const container = document.getElementById(tabId);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>container.innerHTML = `&lt;div class="error-message"&gt;${message}&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Рендеринг контента ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function createCoinCard(coin, isMeme = false) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const change24h = coin.price_change_percentage_24h || 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const change1h = coin.price_change_percentage_1h_in_currency || 0; // CoinGecko часто не предоставляет 1h, это заглушка</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const changeClass = change24h &gt;= 0 ? 'positive' : 'negative';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const changeSymbol = change24h &gt;= 0 ? '↑' : '↓';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const signal = getSignal(change24h, change1h);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>return `</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="crypto-card" onclick="showCoinDetails('${coin.id}', '${coin.symbol.toUpperCase()}', ${coin.current_price}, ${change24h}, ${change1h}, ${isMeme})"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>${signal ? `&lt;div class="signal-badge ${signal}-signal"&gt;${signal.toUpperCase()}&lt;/div&gt;` : ''}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="crypto-card-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="crypto-symbol"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>${coin.symbol.toUpperCase()}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>${isMeme ? '&lt;span class="meme-badge"&gt;MEME&lt;/span&gt;' : ''}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="crypto-price"&gt;$${formatPrice(coin.current_price)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="price-change ${changeClass}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>${changeSymbol} ${Math.abs(change24h).toFixed(2)}% сегодня</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function renderCoins(coins, containerId, isMeme = false) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const container = document.getElementById(containerId);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!coins || coins.length === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>container.innerHTML = '&lt;div class="error-message"&gt;Данных пока нет. Попробуйте обновить.&lt;/div&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>container.innerHTML = coins.map(coin =&gt; createCoinCard(coin, isMeme)).join('');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function renderNewListings() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const container = document.getElementById('newListings');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!cryptoData.new || cryptoData.new.length === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>container.innerHTML = '&lt;div class="error-message"&gt;Новых листингов пока нет.&lt;/div&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>container.innerHTML = cryptoData.new.map(coin =&gt; `</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="new-listing-card" onclick="showCoinDetails('${coin.id}', '${coin.symbol.toUpperCase()}', ${coin.price}, null, null, false, '${coin.prediction}', ${coin.target})"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="new-badge"&gt;NEW&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="crypto-card-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="crypto-symbol"&gt;${coin.symbol.toUpperCase()}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="price-change ${coin.prediction === 'LONG' ? 'positive' : 'negative'}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>${coin.prediction}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="crypto-price"&gt;$${formatPrice(coin.price)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div style="color: #999; font-size: 14px; margin-bottom: 8px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Листинг: ${coin.date}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="exchange-tags"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>${coin.exchanges.map(ex =&gt; `&lt;span class="exchange-tag"&gt;${ex}&lt;/span&gt;`).join('')}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1);"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div style="color: #999; font-size: 12px;"&gt;Цель:&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div style="font-size: 18px; font-weight: bold; color: ${coin.prediction === 'LONG' ? '#00ff88' : '#ff3333'}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>$${coin.target.toFixed(2)}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>`).join('');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Загрузка данных с CoinGecko ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>async function fetchCryptoData() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>showLoadingSkeletons('mainCoins');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>showLoadingSkeletons('memeCoins');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const response = await fetch(`${COINGECKO_API_MARKETS}?vs_currency=usd&amp;ids=${[...MAIN_COINS_IDS, ...MEME_COINS_IDS].join(',')}&amp;price_change_percentage=1h,24h`);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!response.ok) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>throw new Error(`HTTP error! status: ${response.status}`);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const data = await response.json();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>cryptoData.main = data.filter(coin =&gt; MAIN_COINS_IDS.includes(coin.id));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>cryptoData.meme = data.filter(coin =&gt; MEME_COINS_IDS.includes(coin.id));</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>renderCoins(cryptoData.main, 'mainCoins');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>renderCoins(cryptoData.meme, 'memeCoins', true);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error('Ошибка при получении данных с CoinGecko:', error);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showError('mainCoins', 'Не удалось загрузить основные данные.');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showError('memeCoins', 'Не удалось загрузить данные мем-коинов.');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Обработка событий ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function handleTouchStart(e) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>touchStartX = e.touches[0].clientX;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function handleTouchEnd(e) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>touchEndX = e.changedTouches[0].clientX;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>handleSwipe();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function handleSwipe() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const swipeThreshold = 50;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const diff = touchStartX - touchEndX;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (Math.abs(diff) &gt; swipeThreshold) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (diff &gt; 0 &amp;&amp; currentTab &lt; 2) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Свайп влево</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>switchTab(currentTab + 1);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else if (diff &lt; 0 &amp;&amp; currentTab &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Свайп вправо</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>switchTab(currentTab - 1);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function switchTab(index) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>currentTab = index;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Обновляем индикатор</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('tabIndicator').className = `tab-indicator tab-${index}`;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Обновляем активную вкладку</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.mobile-tab').forEach((tab, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tab.classList.toggle('active', i === index);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Обновляем активный элемент нижней навигации</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.bottom-nav .nav-item').forEach((item, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>item.classList.toggle('active', i === index); // предполагаем, что первые 3 элемента bottom-nav соответствуют вкладкам</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Перемещаем контейнер</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const container = document.getElementById('swipeContainer');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>container.style.transform = `translateX(-${index * 33.33}%)`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Обновляем контент вкладки при переключении (если требуется)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// fetchCryptoData(); // Можно вызывать здесь, но сейчас это происходит по интервалу</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function showCoinDetails(id, symbol, price, change24h, change1h, isMeme, prediction = null, target = null) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const popup = document.getElementById('signalPopup');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const content = document.getElementById('signalContent');</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let signalDetailsHtml = '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (prediction) { // Для новых листингов</p>
+<p class="p1"><span class="Apple-converted-space">                </span>signalDetailsHtml += `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="signal-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-label"&gt;Направление&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-value ${prediction === 'LONG' ? 'positive' : 'negative'}"&gt;${prediction}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="signal-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-label"&gt;Целевая цена&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-value"&gt;$${target.toFixed(2)}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else { // Для основных и мем-коинов</p>
+<p class="p1"><span class="Apple-converted-space">                </span>signalDetailsHtml += `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="signal-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-label"&gt;Изменение за 24ч&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-value ${change24h &gt;= 0 ? 'positive' : 'negative'}"&gt;${change24h ? change24h.toFixed(2) : 'N/A'}%&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="signal-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-label"&gt;Изменение за 1ч&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-value ${change1h &gt;= 0 ? 'positive' : 'negative'}"&gt;${change1h ? change1h.toFixed(2) : 'N/A'}%&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>content.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="signal-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span style="font-size: 28px;"&gt;${prediction === 'LONG' ? '🟢' : prediction === 'SHORT' ? '🔴' : '💎'}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>${symbol}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="signal-details"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="signal-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-label"&gt;Текущая цена&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-value"&gt;$${formatPrice(price)}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>${signalDetailsHtml}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="signal-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-label"&gt;Рекомендуемое плечо&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-value"&gt;${isMeme ? '10x-20x' : '5x-10x'}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="signal-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-label"&gt;Риск&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="signal-value"&gt;${isMeme ? 'Высокий' : 'Средний'}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>popup.classList.add('show');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function closeSignal() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('signalPopup').classList.remove('show');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function showSignals() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>alert('Сигналы обновляются автоматически. Ищите значки LONG/SHORT на карточках криптовалют.');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function showNews() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>alert('📰 Новости (для демонстрации):\n\n• BlackRock увеличил позиции в BTC\n• PEPE вырос на 250%\n• Binance листит новые токены');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function showAlerts() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>alert('🔔 Алерты (для демонстрации):\n\n⚠️ Высокая волатильность мем-коинов\n🚀 ZETA листинг на Binance');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>async function refreshData() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const btn = document.getElementById('refreshBtn');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>btn.classList.add('spinning');</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Запускаем асинхронную загрузку данных</p>
+<p class="p1"><span class="Apple-converted-space">            </span>await fetchCryptoData();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btn.classList.remove('spinning');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Вибрация на мобильных устройствах</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if ('vibrate' in navigator) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>navigator.vibrate(50);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, 500); // Немного задержка для анимации кнопки</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- Инициализация ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function init() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Показываем скелеты при первой загрузке</p>
+<p class="p1"><span class="Apple-converted-space">            </span>showLoadingSkeletons('mainCoins');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>showLoadingSkeletons('memeCoins');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderNewListings(); // Новые листинги не требуют API, рендерим сразу</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Запускаем первую загрузку данных с API</p>
+<p class="p1"><span class="Apple-converted-space">            </span>fetchCryptoData();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Обработка свайпов</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const container = document.getElementById('swipeContainer');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>container.addEventListener('touchstart', handleTouchStart);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>container.addEventListener('touchend', handleTouchEnd);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Обработка кликов на вкладки</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.mobile-tab').forEach((tab, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tab.addEventListener('click', () =&gt; switchTab(index));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Автообновление данных с API каждые 60 секунд (из-за ограничений CoinGecko API)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setInterval(fetchCryptoData, 60000); // Обновление каждую минуту</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Закрытие попапа по клику вне его</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.addEventListener('click', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (e.target.classList.contains('signal-popup') &amp;&amp; e.target.id === 'signalPopup') {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>closeSignal();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Запуск приложения</p>
+<p class="p1"><span class="Apple-converted-space">        </span>init();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
